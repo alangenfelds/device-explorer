@@ -29,7 +29,7 @@ const Search = ({ search, setSearch }: Props) => {
         <input
           type="text"
           id="device-search"
-          className="w-[344px] h-8 bg-[#F6F6F8] text-gray-900 text-sm rounded-sm focus:ring-0 focus:ring-offset-0 block  pl-10 p-2.5"
+          className="w-[344px] h-8 bg-[#F6F6F8] text-black text-sm rounded-sm  block  pl-10 p-2"
           placeholder="Search"
           value={search}
           onChange={handleChange}

@@ -6,9 +6,3 @@
   font-family: 'Lato';
   src: url('./assets/fonts/Lato-Regular.woff') format('woff');
 }
-
-@layer base {
-  body {
-    @apply font-lato;
-  }
-}

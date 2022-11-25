@@ -18,7 +18,7 @@ const Devices = () => {
 
   console.log('isLoading', isLoading);
   console.log('error', error);
-  console.log('devices', devices);
+  // console.log('devices', devices);
   return (
     <div className="w-full">
       <div className="flex w-full justify-between items-center px-6 h-14 border-b-[1px]">

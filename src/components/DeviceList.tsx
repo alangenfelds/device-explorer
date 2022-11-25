@@ -9,13 +9,16 @@ type Props = {
 const DeviceList = ({ devices }: Props) => {
   return (
     <div className="pl-20 pb-20 pt-6 pr-6 overflow-y-auto">
-      <table className="table-auto w-full text-sm text-left text-black">
+      <table className="table-auto w-full text-sm text-left text-black font-lato">
         <thead className="">
           <tr>
-            <th scope="col" className="w-[140px] text-[#BDBDBD] text-xs">
+            <th
+              scope="col"
+              className="w-[140px] text-[#BDBDBD] text-xs font-light text-center"
+            >
               {devices.length} devices
             </th>
-            <th scope="col" className="w-[254px] uppercase font-lato pl-2">
+            <th scope="col" className="w-[254px] uppercase pl-2">
               Product line
             </th>
             <th scope="col" className="">
