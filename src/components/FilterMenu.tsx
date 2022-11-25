@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import closeIconUrl from '../assets/clearIcon.svg';
 import { useGlobalContext } from '../app/GlobalContext';
 
 type Props = {
   closeFilters: () => void;
+  activeFilters: string[];
+  handleFilterSelect: (val: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const FilterMenu = ({ closeFilters }: Props) => {
+const FilterMenu = ({
+  closeFilters,
+  activeFilters,
+  handleFilterSelect,
+}: Props) => {
   const { productLines } = useGlobalContext();
   return (
     <div className="absolute top-14 right-0 w-64 bg-white filters-box font-lato">
@@ -25,7 +31,8 @@ const FilterMenu = ({ closeFilters }: Props) => {
               <input
                 id={line.id}
                 type="checkbox"
-                value=""
+                checked={activeFilters.includes(line.id)}
+                onChange={handleFilterSelect}
                 className="w-4 h-4 rounded-[4px] border-gray-300 hover:cursor-pointer  
                 text-[#006FFF]
                 focus:border-indigo-300/90
