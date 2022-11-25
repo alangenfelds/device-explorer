@@ -25,7 +25,7 @@ const FilterMenu = ({
       </div>
       <div className="w-full flex flex-col px-6">
         <div className="h-16 font-bold flex items-center">Product line</div>
-        <div className="pb-8">
+        <div className="pb-8 max-h-[500px] overflow-y-auto">
           {productLines.map((line) => (
             <div key={line.id} className="flex items-center h-8">
               <input

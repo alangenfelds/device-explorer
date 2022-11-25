@@ -17,13 +17,12 @@ const Devices = () => {
 
   const [filteredDevices, setFilteredDevices] = useState<Device[]>([]);
   const [isGridLayout, setIsGridLayout] = useState(false);
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
   console.log('isLoading', isLoading);
   console.log('error', error);
-  console.log('activeFilters', activeFilters);
 
   useEffect(() => {
     if (searchValue && activeFilters.length) {
@@ -48,7 +47,7 @@ const Devices = () => {
     } else {
       setFilteredDevices(devices);
     }
-  }, [searchValue, activeFilters]);
+  }, [searchValue, activeFilters, devices]);
 
   // useEffect(() => {
   //   if (activeFilters.length) {
