@@ -6,3 +6,7 @@
   font-family: 'Lato';
   src: url('./assets/fonts/Lato-Regular.woff') format('woff');
 }
+
+.filters-box {
+  box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.15);
+}
