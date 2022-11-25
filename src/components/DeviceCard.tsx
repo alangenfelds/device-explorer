@@ -18,8 +18,10 @@ const DeviceCard = ({ device }: Props) => {
         />
       </div>
       <div className="p-3">
-        <div className="text-sm leading-6">{device.product.name}</div>
-        <div className="text-sm leading-6 text-black/40">
+        <div className="text-sm font-bold leading-6 truncate">
+          {device.product.name}
+        </div>
+        <div className="text-sm font-normal leading-6 text-black/40 truncate">
           {device.line.name}
         </div>
       </div>
