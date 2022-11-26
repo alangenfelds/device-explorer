@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import deviceUrl from '../assets/devices/device-big.png';
 import { Device } from '../types/Device';
@@ -8,8 +9,13 @@ type Props = {
 };
 
 const DeviceCard = ({ device }: Props) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="w-[233px] h-[193px] rounded-lg border border-solid border-[##DBDCE1]  hover:shadow-md hover:cursor-pointer">
+    <div
+      className="w-[233px] h-[193px] rounded-lg border border-solid border-[##DBDCE1]  hover:shadow-md hover:cursor-pointer"
+      onClick={() => navigate(`/device/${device.model_id}`)}
+    >
       <div className="w-full">
         <img
           src={deviceUrl}

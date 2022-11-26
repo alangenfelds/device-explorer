@@ -4,6 +4,7 @@ import { Device, DevicesResponse, Line } from '../types/Device';
 
 interface GlobalContextProps {
   devices: Device[];
+  deviceMap: Record<string, Device>;
   productLines: Line[];
   isLoading: boolean;
   error?: useFetch.UseFetchError;
@@ -22,6 +23,8 @@ export const GlobalContextProvider: React.FC<{ children: JSX.Element }> = ({
 
   const [devices, setDevices] = useState<Device[]>([]);
 
+  const [deviceMap, setDeviceMap] = useState<Record<string, Device>>({});
+
   const [productLines, setProductLines] = useState<Line[]>([]);
 
   useEffect(() => {
@@ -29,11 +32,15 @@ export const GlobalContextProvider: React.FC<{ children: JSX.Element }> = ({
       setDevices(data.devices);
 
       const prodLines: Line[] = [];
+      const devMap: Record<string, Device> = {};
 
       data.devices.map((device) => {
         if (!prodLines.find((line) => line.id === device.line.id)) {
           prodLines.push(device.line);
         }
+
+        devMap[device.model_id] = device;
+        setDeviceMap(devMap);
       }, []);
 
       setProductLines(prodLines);
@@ -46,6 +53,7 @@ export const GlobalContextProvider: React.FC<{ children: JSX.Element }> = ({
         isLoading,
         error,
         devices,
+        deviceMap,
         productLines,
       }}
     >
