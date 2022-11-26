@@ -49,17 +49,6 @@ const Devices = () => {
     }
   }, [searchValue, activeFilters, devices]);
 
-  // useEffect(() => {
-  //   if (activeFilters.length) {
-  //     const filtered = filteredDevices.filter((device) =>
-  //       device.product.name.toLowerCase().includes(searchValue.toLowerCase())
-  //     );
-  //     setFilteredDevices(filtered);
-  //   } else {
-  //     setFilteredDevices(devices);
-  //   }
-  // }, [activeFilters]);
-
   const handleCloseFilters = () => {
     setShowFilters(false);
   };
@@ -81,8 +70,8 @@ const Devices = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex w-full justify-between items-center px-6 h-14 border-b-[1px]">
+    <>
+      <div className="sticky top-0 flex w-full justify-between items-center px-6 h-12 border-b-[1px] border-t-[1px] bg-white">
         <Search search={searchValue} setSearch={setSearchValue} />
         <div className="flex items-center gap-x-3 select-none">
           <div
@@ -123,7 +112,7 @@ const Devices = () => {
       ) : (
         <DeviceList devices={filteredDevices} />
       )}
-    </div>
+    </>
   );
 };
 

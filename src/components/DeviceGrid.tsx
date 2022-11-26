@@ -8,7 +8,7 @@ type Props = {
 
 const DeviceGrid = ({ devices }: Props) => {
   return (
-    <div className="pl-20 pb-20 pt-6 pr-6 overflow-y-auto flex flex-wrap gap-6">
+    <div className="content-container pl-20 pb-20 pt-6 pr-6 overflow-y-auto flex flex-wrap gap-6">
       {devices.map((item) => (
         <DeviceCard key={item.model_id} device={item} />
       ))}
