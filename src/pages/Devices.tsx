@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import listViewSelectedUrl from '../assets/list-selected.svg';
 import listViewUrl from '../assets/list.svg';
@@ -11,20 +11,23 @@ import DeviceGrid from '../components/DeviceGrid';
 import DeviceList from '../components/DeviceList';
 import FilterMenu from '../components/FilterMenu';
 import { Device } from '../types/Device';
+import Loader from '../components/Loader';
+import ErrorMessage from '../components/ErrorMessage';
 
 const Devices = () => {
-  const { devices, error, isLoading } = useGlobalContext();
+  const {
+    devices,
+    activeFilters,
+    searchValue,
+    error,
+    isLoading,
+    isGridLayout,
+    setIsGridLayout,
+  } = useGlobalContext();
 
-  const [filteredDevices, setFilteredDevices] = useState<Device[]>([]);
-  const [isGridLayout, setIsGridLayout] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
-  console.log('isLoading', isLoading);
-  console.log('error', error);
-
-  useEffect(() => {
+  const filteredDevices: Device[] = useMemo(() => {
     if (searchValue && activeFilters.length) {
       const filtered = devices.filter(
         (device) =>
@@ -33,19 +36,19 @@ const Devices = () => {
             .includes(searchValue.toLowerCase()) &&
           activeFilters.includes(device.line.id)
       );
-      setFilteredDevices(filtered);
+      return filtered;
     } else if (searchValue) {
       const filtered = devices.filter((device) =>
         device.product.name.toLowerCase().includes(searchValue.toLowerCase())
       );
-      setFilteredDevices(filtered);
+      return filtered;
     } else if (activeFilters.length) {
       const filtered = devices.filter((device) =>
         activeFilters.includes(device.line.id)
       );
-      setFilteredDevices(filtered);
+      return filtered;
     } else {
-      setFilteredDevices(devices);
+      return devices;
     }
   }, [searchValue, activeFilters, devices]);
 
@@ -53,29 +56,21 @@ const Devices = () => {
     setShowFilters(false);
   };
 
-  const handleFilterSelect = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFilter = e.target.id;
+  if (isLoading) {
+    return <Loader />;
+  }
 
-    let updatedFilters: string[] = [];
-
-    if (activeFilters.includes(selectedFilter)) {
-      updatedFilters = [
-        ...activeFilters.filter((item) => item !== selectedFilter),
-      ];
-    } else {
-      updatedFilters = [...activeFilters, selectedFilter];
-    }
-
-    setActiveFilters(updatedFilters);
-  };
+  if (error) {
+    return <ErrorMessage />;
+  }
 
   return (
     <>
       <div className="sticky top-0 flex w-full justify-between items-center px-6 h-12 border-b-[1px] border-t-[1px] bg-white">
-        <Search search={searchValue} setSearch={setSearchValue} />
+        <Search />
         <div className="flex items-center gap-x-3 select-none">
           <div
-            className="cursor-pointer"
+            className="cursor-pointer h-6 w-6 flex items-center justify-center"
             onClick={() => setIsGridLayout(false)}
           >
             <img
@@ -98,13 +93,7 @@ const Devices = () => {
           >
             Filter
           </div>
-          {showFilters && (
-            <FilterMenu
-              closeFilters={handleCloseFilters}
-              activeFilters={activeFilters}
-              handleFilterSelect={handleFilterSelect}
-            />
-          )}
+          {showFilters && <FilterMenu closeFilters={handleCloseFilters} />}
         </div>
       </div>
       {isGridLayout ? (

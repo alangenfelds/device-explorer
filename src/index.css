@@ -7,15 +7,28 @@
   src: url('./assets/fonts/Lato-Regular.woff') format('woff');
 }
 
-.filters-box {
-  box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.15);
-}
-
-.content-container {
-  height: calc(100vh - 56px - 48px);
+:root {
+  --header-height: 56px;
+  --toolbar-height: 48px;
 }
 
 body {
   padding: 0;
   height: 100vh;
+}
+
+.filters-box {
+  box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.15);
+}
+
+.devices-container {
+  max-height: calc(100vh - 56px - 48px);
+}
+
+.device-details-container {
+  height: calc(100vh - 56px - 48px);
+}
+
+.status-container {
+  height: calc(100vh - 56px);
 }

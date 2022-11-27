@@ -2,15 +2,13 @@ import React from 'react';
 
 import searchIconUrl from '../assets/Search-icon.svg';
 import clearIconUrl from '../assets/clearIcon.svg';
+import { useGlobalContext } from '../app/GlobalContext';
 
-type Props = {
-  search: string;
-  setSearch: (val: string) => void;
-};
+const Search = () => {
+  const { searchValue, handleSearchInputChange } = useGlobalContext();
 
-const Search = ({ search, setSearch }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+    handleSearchInputChange(e.target.value);
   };
 
   return (
@@ -31,14 +29,14 @@ const Search = ({ search, setSearch }: Props) => {
           id="device-search"
           className="focus:ring-0 border-none w-[344px] h-8 bg-[#F6F6F8] text-sm rounded-sm block pl-10 p-2 placeholder:text-black/50"
           placeholder="Search"
-          value={search}
+          value={searchValue}
           onChange={handleChange}
         />
-        {search && (
+        {searchValue && (
           <button
             type="button"
             className="absolute inset-y-0 right-0 flex items-center pr-3"
-            onClick={() => setSearch('')}
+            onClick={() => handleSearchInputChange('')}
           >
             <img
               src={clearIconUrl}

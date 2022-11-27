@@ -8,7 +8,7 @@ type Props = {
 
 const DeviceList = ({ devices }: Props) => {
   return (
-    <div className="content-container pl-20 pb-20 pt-6 pr-6 overflow-y-auto">
+    <div className="devices-container pl-20 pb-20 pt-6 pr-6 overflow-y-auto">
       <table className="table-auto w-full text-sm text-left text-black font-lato">
         <thead className="">
           <tr>

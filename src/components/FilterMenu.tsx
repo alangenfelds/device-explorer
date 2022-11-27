@@ -1,20 +1,15 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 
 import closeIconUrl from '../assets/clearIcon.svg';
 import { useGlobalContext } from '../app/GlobalContext';
 
 type Props = {
   closeFilters: () => void;
-  activeFilters: string[];
-  handleFilterSelect: (val: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const FilterMenu = ({
-  closeFilters,
-  activeFilters,
-  handleFilterSelect,
-}: Props) => {
-  const { productLines } = useGlobalContext();
+const FilterMenu = ({ closeFilters }: Props) => {
+  const { productLines, handleFilterSelect, activeFilters, removeFilters } =
+    useGlobalContext();
   return (
     <div className="absolute top-14 right-0 w-64 bg-white filters-box font-lato">
       <div className="w-full h-14 border-b-[1px] border-[##DBDCE1] flex items-center justify-between px-6">
@@ -50,6 +45,13 @@ const FilterMenu = ({
             </div>
           ))}
         </div>
+        <button
+          onClick={removeFilters}
+          disabled={!activeFilters.length}
+          className="h-16 flex items-center justify-center disabled:text-gray-400 disabled:cursor-not-allowed"
+        >
+          Clear All
+        </button>
       </div>
     </div>
   );
