@@ -6,6 +6,7 @@ The Device Explorer app built with React/Typescript.
 
 <!-- prettier-ignore-start -->
 [![Build Status][build-badge]][build]
+
 [build-badge]: https://img.shields.io/github/deployments/alangenfelds/device-explorer/production?label=vercel&logoColor=vercel
 [build]: https://github.com/alangenfelds/device-explorer/deployments
 <!-- prettier-ignore-end -->
