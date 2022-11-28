@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../helpers/getImageUrl';
 
-import deviceUrl from '../assets/devices/device1.png';
+// import deviceUrl from '../assets/devices/device1.png';
 import { Device } from '../types/Device';
 
 type Props = {
@@ -17,7 +18,7 @@ const DeviceListItem = ({ device }: Props) => {
       onClick={() => navigate(`/device/${device.model_id}`)}
     >
       <td>
-        <img src={deviceUrl} alt="device" className="ml-auto pr-12" />
+        <img src={getImageUrl(device)} alt="device" className="ml-auto pr-12" />
       </td>
       <td className="pl-2">{device.line.name}</td>
       <td className="">{device.product.name}</td>

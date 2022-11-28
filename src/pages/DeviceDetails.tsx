@@ -3,9 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../app/GlobalContext';
 
 import backIcon from '../assets/back.svg';
-import deviceDetailsImage from '../assets/devices/device-details-image.png';
+
 import ErrorMessage from '../components/ErrorMessage';
 import Loader from '../components/Loader';
+import { getImageUrl } from '../helpers/getImageUrl';
 
 type Props = {};
 
@@ -41,11 +42,11 @@ const DeviceDetails = (props: Props) => {
         {selectedDevice ? (
           <div className="flex items-center w-[688px] h-64">
             <img
-              src={deviceDetailsImage}
+              src={getImageUrl(selectedDevice, 257)}
               alt="device"
               className="w-64 h-64 object-contain"
             />
-            <div className="flex flex-col w-full ">
+            <div className="ml-8 flex flex-col w-full">
               <div className="flex justify-between h-[30px] border-b-[1px] border-[#EDEDF0]">
                 <div>Product line</div>
                 <div className="text-right">{selectedDevice.line?.name}</div>
@@ -61,7 +62,9 @@ const DeviceDetails = (props: Props) => {
               <div className="flex justify-between h-[30px] border-b-[1px] border-[#EDEDF0]">
                 <div>Short name</div>
                 <div className="text-right">
-                  {selectedDevice.product?.abbrev}
+                  {selectedDevice.shortnames?.length
+                    ? selectedDevice.shortnames[0]
+                    : ''}
                 </div>
               </div>
               <div className="flex justify-between h-[30px] border-b-[1px] border-[#EDEDF0]">
@@ -79,9 +82,7 @@ const DeviceDetails = (props: Props) => {
             </div>
           </div>
         ) : (
-          <div className="text-2xl" font-lato>
-            404 - PAGE NOT FOUND
-          </div>
+          <div className="text-2xl font-lato">404 - PAGE NOT FOUND</div>
         )}
       </div>
     </div>

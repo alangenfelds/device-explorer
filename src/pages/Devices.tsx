@@ -26,7 +26,6 @@ const Devices = () => {
   } = useGlobalContext();
 
   const [showFilters, setShowFilters] = useState(false);
-
   const filteredDevices: Device[] = useMemo(() => {
     if (searchValue && activeFilters.length) {
       const filtered = devices.filter(

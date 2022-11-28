@@ -30,7 +30,6 @@ export const GlobalContextProvider: React.FC<{ children: JSX.Element }> = ({
   const { isLoading, data, error } = useFetch<DevicesResponse>(BASE_URL);
 
   const [devices, setDevices] = useState<Device[]>([]);
-  console.log('GlobalContext devices', devices);
 
   const [deviceMap, setDeviceMap] = useState<Record<string, Device>>({});
 

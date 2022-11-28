@@ -7,7 +7,6 @@ type Props = {
 };
 
 const DeviceGrid = ({ devices }: Props) => {
-  console.log('devices', devices);
   return (
     <div className="pl-20 pb-20 pt-6 pr-6 font-lato devices-container overflow-y-auto">
       <div className="text-[#BDBDBD] text-xs font-light">
