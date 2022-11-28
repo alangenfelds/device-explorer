@@ -90,7 +90,7 @@ const Devices = () => {
             }`}
             onClick={() => setShowFilters(true)}
           >
-            Filter
+            Filter {activeFilters.length ? `(${activeFilters.length})` : ''}
           </div>
           {showFilters && <FilterMenu closeFilters={handleCloseFilters} />}
         </div>
